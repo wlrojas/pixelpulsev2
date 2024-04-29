@@ -1,162 +1,38 @@
+{% extends 'basev2.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categor&iacute;as</title>
-    
-    <!--CSS-->
-    <link rel="stylesheet" href="{% static 'CSS/styleProductos.css' %}">
-    
-    <!--Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!--GoogleFont-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!--Letra Marca-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Workbench:SCAN@-41&display=swap" rel="stylesheet">
-
-    <!--Letra Nav-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Workbench:SCAN@-41&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-    <!--Iconos-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-8dN9Xqg3a0l+5g/gJ/u19GUvN5b06qGlvX7MyFim5nEnqLJqk5v1JAz+HH9K2xM8" crossorigin="anonymous">
-
-</head>
-
-<body>
-  <!--Navegador-->
-  <nav class="navbar navbar-expand-lg navegador">
-    <div class="container-fluid">
-        <!-- Nombre de la empresa -->
-        <a class="navbar-brand letra-marca" href="#">
-            <img src="{% static 'IMG/logo.jpg' %}" class="rounded-circle" alt="Logo" width="50" height="50"
-                class="d-inline-block align-text-top">
-            PixelPulse Gaming
-        </a>
-        <!-- Botón para dispositivos móviles -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Contenido del menú -->
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav me-auto">
-                <a class="nav-link active letra-blanca " aria-current="page" href="{% url 'index' %}">INICIO</a>
-                <a class="nav-link letra-blanca" href="{% url 'categorias' %}">CATEGORIAS</a>
+{% block content %}
+<section>
+    <div class="container container-fluid">
+        <div class="row">
+            <header class="container contenedor-titulo text-center">
+                <h1 class="titulo kalam-regular">{{ productos.0.categoria.nombreCategoria }}</h1>
+            </header>
+            {% for producto in productos %}
+            <div class="col-lg-12 col-md-12 col-sm-12 fila text-center">
+                <img src="{% static producto.get_img_url %}" alt="Monitor Gamer" class="imagenes img-fluid">
             </div>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link letra-blanca disabled" href="#">PERFIL</a>
-                <a class="nav-link letra-blanca" href="{% url 'login' %}">INICIAR SESI&Oacute;N</a>
-                <a class="nav-link letra-blanca" href="{% url 'registrar' %}">CREAR CUENTA</a>
+            <div class="col-md-12 fila">
+                <div class="text-center">
+                    <h3 class="titulo-producto">
+                        {{ producto.nombreProducto }}
+                    </h3>
+                </div>
+                <p class="text-center">
+           		{{producto.descripcion}}
+                </p>
+
+                <div>
+                    <h4 class="precio text-center">
+                        {{producto.precio}}
+                    </h4>
+                </div>
+                <div class="d-flex justify-content-center align-items-end">
+                    <a href="{% url 'agregar_a_carrito' producto_id=producto.idProducto %}" class="btn btn-sm btn-outline-secondary">Añadir al carrito</a>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-</nav>
-
-
-  <header class="container contenedor-titulo text-center">
-    <h1 class="titulo kalam-regular">Procesadores</h1>
-  </header>
-
-  <section>
-    <div class="container"> 
-        <div class="row">
-            <!--ProductoUno-->
-            <div class="col-lg-4 col-md-12 col-sm-12 fila"> 
-                <img src="{% static 'IMG/procesadorUno.jpg' %}" alt="Procesador pc" class="imagenes img-fluid">
-            </div>
-            <div class="col-md-8 fila"> 
-                <div class="text-center">
-                    <h3 class="titulo-producto">
-                      Procesador Intel i9-13900K, 3Ghz Turbo 5.8Ghz, LGA1700, 8-Core / 32-Threads
-                    </h3>
-                </div>
-                <p>
-
-                  El procesador Intel Core i9-13900K es un chip de alto rendimiento diseñado para satisfacer las demandas de aplicaciones exigentes, 
-                  como juegos, edición de video y renderizado 3D. Con una velocidad base de 3 GHz y capacidad de Turbo Boost de hasta 5.8 GHz, 
-                  ofrece un rendimiento excepcional en una variedad de tareas. Equipado con 8 núcleos y 32 hilos gracias a la tecnología Hyper-Threading, 
-                  este procesador es capaz de manejar eficientemente múltiples tareas simultáneas. Utiliza el zócalo LGA 1700 y está basado en la última arquitectura
-                   de procesadores Intel, lo que garantiza un equilibrio óptimo entre rendimiento y eficiencia energética. Recomendado para jugadores entusiastas, 
-                   creadores de contenido y profesionales que necesitan potencia de procesamiento de alta gama, el Intel Core i9-13900K ofrece un rendimiento excepcional 
-                   y capacidades avanzadas de multitarea.
-
-                </p>
-                <div class="d-flex justify-content-end align-items-end">
-                    <button class="btn btn-outline-light boton botonRojo" type="reset" id="btnBorrar">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                    <button class="btn btn-outline-light boton botonVerde" type="submit" id="btnAgregar">
-                        <i class="fas fa-shopping-cart"></i>
-                    </button>
-                </div>
-
-                <div>
-                    <h4 class="precio">
-                        Precio: $ 731.495
-                    </h4>
-                </div>
-
-            </div>
-        </div>
-        
-        <!--ProductoDos-->
-        <div class="row mt-4">
-            <div class="col-lg-4 col-md-12 col-sm-12 fila"> 
-                <img src="{% static 'IMG/procesadorDos.jpg' %}" alt="Procesador pc" class="imagenes img-fluid">
-            </div>
-            <div class="col-md-8 fila"> 
-                <div class="text-center">
-                    <h3 class="titulo-producto">
-                      CPU Ryzen 5 8600G (AM5)
-                    </h3>
-                </div>
-                <p>
-                  El CPU Ryzen 5 8600G (AM5) es una unidad de procesamiento central desarrollada por AMD, conocida por su potencia y eficiencia en el rendimiento. 
-                  Diseñado para satisfacer las necesidades de usuarios que buscan un equilibrio entre rendimiento y precio, 
-                  este procesador ofrece un sólido rendimiento en una variedad de tareas, desde juegos hasta multitarea intensiva. 
-                  Equipado con una arquitectura de 6 núcleos y 12 hilos, el Ryzen 5 8600G es capaz de manejar cargas de trabajo exigentes con facilidad. 
-                  Además, cuenta con gráficos integrados de la serie Radeon, lo que proporciona una experiencia visual fluida y de alta calidad sin la necesidad de una tarjeta gráfica dedicada.
-                   Con su compatibilidad con el socket AM5, este procesador es una excelente opción para aquellos que buscan actualizar o construir un sistema de PC versátil y eficiente.
-                </p>
-                
-                <div class="d-flex justify-content-end align-items-end">
-                    <button class="btn btn-outline-light boton botonRojo" type="reset" id="btnBorrar">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                    <button class="btn btn-outline-light boton botonVerde" type="submit" id="btnAgregar">
-                        <i class="fas fa-shopping-cart"></i>
-                    </button>
-                </div>
-
-                <div class="container">
-                    <h4 class="precio">
-                       Precio: $ 316.690
-                    </h4>
-                </div>
-            </div>
-        </div>
 </section>
-  
-<!--Pie de pagina-->
-<footer class="container-fluid">
-    <p>Derechos Reservados &copy; 2024 PixelPulse Gaming</p>
-</footer>
-  
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>  
-</body>
-</html>
+{% endblock %}

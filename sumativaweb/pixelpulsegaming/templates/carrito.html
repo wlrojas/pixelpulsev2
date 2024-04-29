@@ -1,0 +1,38 @@
+<!-- carrito.html -->
+{% extends 'basev2.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Carrito de Compras</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.producto.nombreProducto }}</td>
+                <td>{{ item.producto.precio }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>{{ item.subtotal }}</td>
+                <td>
+                    <a href="{% url 'eliminar_del_carrito' producto_id=item.producto.idProducto %}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>Total: {{ total }}</p>
+    <a href="{% url 'vaciar_carrito' %}">Vaciar Carrito</a>
+    <div class="mt-4">
+        <a href="{% url 'categorias' %}" class="btn btn-primary">Ver Categorías</a>
+    </div>
+</div>
+{% endblock %}

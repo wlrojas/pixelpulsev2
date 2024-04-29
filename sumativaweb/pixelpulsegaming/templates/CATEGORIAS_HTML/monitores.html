@@ -1,162 +1,38 @@
+{% extends 'basev2.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categor&iacute;as</title>
-    
-    <!--CSS-->
-    <link rel="stylesheet" href="{% static '/CSS/styleProductos.css' %}">
-    
-    <!--Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!--GoogleFont-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!--Letra Marca-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Workbench:SCAN@-41&display=swap" rel="stylesheet">
-
-    <!--Letra Nav-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Workbench:SCAN@-41&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-    <!--Iconos-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-8dN9Xqg3a0l+5g/gJ/u19GUvN5b06qGlvX7MyFim5nEnqLJqk5v1JAz+HH9K2xM8" crossorigin="anonymous">
-
-</head>
-
-<body>
-  <!--Navegador-->
-  <nav class="navbar navbar-expand-lg navegador">
-    <div class="container-fluid">
-        <!-- Nombre de la empresa -->
-        <a class="navbar-brand letra-marca" href="#">
-            <img src="{% static '/IMG/logo.jpg' %}" class="rounded-circle" alt="Logo" width="50" height="50"
-                class="d-inline-block align-text-top">
-            PixelPulse Gaming
-        </a>
-        <!-- Botón para dispositivos móviles -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Contenido del menú -->
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav me-auto">
-                <a class="nav-link active letra-blanca " aria-current="page" href="{% url 'index' %}">INICIO</a>
-                <a class="nav-link letra-blanca" href="{% url 'categorias' %}">CATEGORIAS</a>
+{% block content %}
+<section>
+    <div class="container container-fluid">
+        <div class="row">
+            <header class="container contenedor-titulo text-center">
+                <h1 class="titulo kalam-regular">{{ productos.0.categoria.nombreCategoria }}</h1>
+            </header>
+            {% for producto in productos %}
+            <div class="col-lg-12 col-md-12 col-sm-12 fila text-center">
+                <img src="{% static producto.get_img_url %}" alt="Monitor Gamer" class="imagenes img-fluid">
             </div>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link letra-blanca disabled" href="#">PERFIL</a>
-                <a class="nav-link letra-blanca" href="{% url 'login' %}">INICIAR SESI&Oacute;N</a>
-                <a class="nav-link letra-blanca" href="{% url 'registrar' %}">CREAR CUENTA</a>
+            <div class="col-md-12 fila">
+                <div class="text-center">
+                    <h3 class="titulo-producto">
+                        {{ producto.nombreProducto }}
+                    </h3>
+                </div>
+                <p class="text-center">
+           		{{producto.descripcion}}
+                </p>
+
+                <div>
+                    <h4 class="precio text-center">
+                        {{producto.precio}}
+                    </h4>
+                </div>
+                <div class="d-flex justify-content-center align-items-end">
+                    <a href="{% url 'agregar_a_carrito' producto_id=producto.idProducto %}" class="btn btn-sm btn-outline-secondary">Añadir al carrito</a>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-</nav>
-
-
-  <header class="container contenedor-titulo text-center">
-    <h1 class="titulo kalam-regular">Monitores</h1>
-  </header>
-
-  <section>
-    <div class="container"> 
-        <div class="row">
-            <!--ProductoUno-->
-            <div class="col-lg-4 col-md-12 col-sm-12 fila"> 
-                <img src="{% static 'IMG/monitorUno.jpg' %}" alt="Monitor Gamer" class="imagenes img-fluid">
-            </div>
-            <div class="col-md-8 fila"> 
-                <div class="text-center">
-                    <h3 class="titulo-producto">
-                        Monitor Gamer 27" TUF - QHD, Panel IPS, 165Hz(1ms), G-Sync, HDR10 (Pivoteable) (VG27AQ)
-                    </h3>
-                </div>
-                <p>
-                  Monitor IPS para juegos WQHD (2560x1440) de 27 pulgadas con frecuencia de actualización ultrarrápida de 165Hz diseñada para jugadores profesionales y un juego inmersivo.
-                  La tecnología ASUS Extreme Low Motion Blur Sync (ELMB SYNC) permite un tiempo de respuesta de 1ms (MPRT) junto con G-SYNC Compatible, eliminando el efecto fantasma y el desgarro para imágenes nítidas de juegos con altas velocidades de FPS.
-                  Certificado como compatible con G-SYNC, que ofrece una experiencia de juego sin interrupciones y sin desgarros al habilitar VRR (frecuencia de actualización variable) de forma predeterminada.
-                  Compatible con el alto rango dinámico HDR10 estándar de la industria para niveles de color y brillo que exceden las capacidades de los monitores comunes.
-                  Cuenta con un soporte de diseño ergonómico para ofrecer amplios ajustes de giro, inclinación y altura.
-                </p>
-                <div class="d-flex justify-content-end align-items-end">
-                    <button class="btn btn-outline-light boton botonRojo" type="reset" id="btnBorrar">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                    <button class="btn btn-outline-light boton botonVerde" type="submit" id="btnAgregar">
-                        <i class="fas fa-shopping-cart"></i>
-                    </button>
-                </div>
-
-                <div>
-                    <h4 class="precio">
-                        Precio: $ 343.590
-                    </h4>
-                </div>
-
-            </div>
-        </div>
-        
-        <!--ProductoDos-->
-        <div class="row mt-4">
-            <div class="col-lg-4 col-md-12 col-sm-12 fila"> 
-                <img src="{% static 'IMG/monitorDos.png' %}" alt="Monitor Gamer" class="imagenes img-fluid">
-            </div>
-            <div class="col-md-8 fila"> 
-                <div class="text-center">
-                    <h3 class="titulo-producto">
-                        Monitor Gamer 27" Curvo Optix - QHD, Panel VA, 165Hz(1ms), FreeSync Premium (G271CQR)
-                    </h3>
-                </div>
-                <p>
-                  Pantalla curva perfecta 1000R: se adapta perfectamente a la curvatura del ojo humano para que pueda ver toda la pantalla sin fatiga.
-                  Alta resolución WQHD: los títulos de los juegos se verán incluso mejor y mostrarán más detalles gracias a la resolución WQHD.
-                  Rapid Boost (165 + 1 ms): experimente un juego fluido con una frecuencia y un tiempo de respuesta increíblemente rápidos.
-                  Visión nocturna: vea cada detalle claramente en la oscuridad, lo que lo ayuda a encontrar y atacar a los enemigos.
-                  Tecnología premium Freesync: juegos fluidos, sin desgarros ni tartamudeos.
-                  LED RGB: la fascinante retroiluminación LED RGB te acompaña en cada batalla.
-                  Less Blue Light Pro: solución de hardware para reducir la emisión de luz en la región azul-violeta (longitud de onda de 415 a 455 nm).
-                  Sincronización de perfil HDMI™ CEC: configure perfiles para múltiples conjuntos de dispositivos.
-                  Modo de consola: la mejor solución para usuarios de consolas: FHD/WQHD a 120 Hz, resolución 2K, optimización de PS5™.
-                  Diseño sin marco: experiencia de juego definitiva.   
-                </p>
-                
-                <div class="d-flex justify-content-end align-items-end">
-                    <button class="btn btn-outline-light boton botonRojo" type="reset" id="btnBorrar">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                    <button class="btn btn-outline-light boton botonVerde" type="submit" id="btnAgregar">
-                        <i class="fas fa-shopping-cart"></i>
-                    </button>
-                </div>
-
-                <div class="container">
-                    <h4 class="precio">
-                       Precio: $ 338.190
-                    </h4>
-                </div>
-            </div>
-        </div>
 </section>
-  
-<!--Pie de pagina-->
-<footer class="container-fluid">
-    <p>Derechos Reservados &copy; 2024 PixelPulse Gaming</p>
-</footer>
-  
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>  
-</body>
-</html>
+{% endblock %}

@@ -26,4 +26,9 @@ urlpatterns = [
     path('perfil/', views.perfil, name='perfil'),
     path('usuario/', include('usersesion.urls'), name='usuario_sesion'),
     path('categorias/', include('pixelpulsegaming.urls'), name='categorias'),
+    path('carrito/', views.mostrar_carrito, name='carrito'),
+    path('carrito/vaciar', views.vaciar_carrito, name='vaciar_carrito'),
+    path('carrito/agregar/<int:producto_id>', views.agregar_a_carrito, name='agregar_a_carrito'),
+    path('carrito/actualizar/<int:producto_id>/<int:cantidad>', views.actualizar_carrito, name='actualizar_carrito'),
+    path('carrito/eliminar/<int:producto_id>', views.eliminar_del_carrito, name='eliminar_del_carrito'),
 ]

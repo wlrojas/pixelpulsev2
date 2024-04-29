@@ -23,6 +23,9 @@ class Productos(models.Model):
     def __str__(self):
         return self.nombreProducto
 
+    def get_img_url(self):
+        return f'IMG/{self.idProducto}.jpg'
+
 
 class CarritoItem(models.Model):
     producto = models.ForeignKey(Productos, on_delete=models.CASCADE)

@@ -3,6 +3,8 @@ import requests
 from django.shortcuts import render
 from django.shortcuts import redirect
 
+from pixelpulsegaming.models import Productos
+
 
 # Create your views here.
 
@@ -73,31 +75,78 @@ def categoria(request):
 
 
 def monitores(request):
-    return render(request, 'CATEGORIAS_HTML/monitores.html')
+    productos = Productos.objects.filter(categoria__nombreCategoria="Monitores")
+    return render(request, 'CATEGORIAS_HTML/monitores.html', {'productos': productos})
 
 
 def notebooks(request):
-    return render(request, 'CATEGORIAS_HTML/notebooks.html')
+    productos = Productos.objects.filter(categoria__nombreCategoria="Notebooks")
+    return render(request, 'CATEGORIAS_HTML/notebooks.html', {'productos': productos})
 
 
 def perifericos(request):
-    return render(request, 'CATEGORIAS_HTML/perifericos.html')
+    productos = Productos.objects.filter(categoria__nombreCategoria="Periféricos")
+    return render(request, 'CATEGORIAS_HTML/perifericos.html', {'productos': productos})
 
 
 def procesadores(request):
-    return render(request, 'CATEGORIAS_HTML/procesadores.html')
+    productos = Productos.objects.filter(categoria__nombreCategoria="Procesadores")
+    return render(request, 'CATEGORIAS_HTML/procesadores.html', {'productos': productos})
 
 
 def sillasGamer(request):
-    return render(request, 'CATEGORIAS_HTML/sillasGamer.html')
+    productos = Productos.objects.filter(categoria__nombreCategoria="Sillas Gamer")
+    return render(request, 'CATEGORIAS_HTML/sillasGamer.html', {'productos': productos})
 
 
 def tarjetasDeVideo(request):
-    return render(request, 'CATEGORIAS_HTML/tarjetasDeVideo.html')
-
-
-
+    productos = Productos.objects.filter(categoria__nombreCategoria="Tarjetas de Video")
+    return render(request, 'CATEGORIAS_HTML/tarjetasDeVideo.html', {'productos': productos})
 
 
 def perfil(request):
     return None
+
+
+def agregar_a_carrito(request, producto_id):
+    carrito = request.session.get('carrito', {})
+    key = str(producto_id)
+    cantidad = carrito.get(key, 0)
+    carrito[key] = cantidad + 1
+    request.session['carrito'] = carrito
+    return redirect('carrito')
+
+
+def eliminar_del_carrito(request, producto_id):
+    carrito = request.session.get('carrito', {})
+    if str(producto_id) in carrito:
+        del carrito[str(producto_id)]
+    request.session['carrito'] = carrito
+    return redirect('carrito')
+
+
+def actualizar_carrito(request, producto_id, cantidad):
+    carrito = request.session.get('carrito', {})
+    if cantidad == 0:
+        del carrito[producto_id]
+    else:
+        carrito[producto_id] = cantidad
+    request.session['carrito'] = carrito
+    return redirect('carrito')
+
+
+def vaciar_carrito(request):
+    request.session['carrito'] = {}
+    return redirect('carrito')
+
+
+def mostrar_carrito(request):
+    carrito = request.session.get('carrito', {})
+    items = []
+    total = 0
+    for producto_id, cantidad in carrito.items():
+        producto = Productos.objects.get(idProducto=producto_id)
+        subtotal = producto.precio * cantidad
+        items.append({'producto': producto, 'cantidad': cantidad, 'subtotal': subtotal})
+        total += subtotal
+    return render(request, 'carrito.html', {'items': items, 'total': total})
