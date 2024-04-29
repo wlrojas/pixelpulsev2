@@ -84,10 +84,12 @@ WSGI_APPLICATION = 'sumativaweb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/oracle',
-        'USER': 'c##prueba',
-        'PASSWORD': 'prueba',
+        'ENGINE': 'django.db.backends.oracle',  # Backend de Oracle para Django
+        'NAME': 'PIXELPULSEGA',  # Nombre del servicio de la base de datos
+        'USER': 'C##PIXELGAMING',  # Nombre de usuario de la base de datos
+        'PASSWORD': 'OracleCloud123',  # Contraseña de tu usuario de la base de datos
+        'HOST': '192.168.1.134',  # Dirección IP o nombre de host del servidor de base de datos (ajústalo según tu configuración)
+        'PORT': '1521',  # Puerto del servidor de base de datos (normalmente 1521)
         'TEST': {
             'USER': 'default_test',
             'TBLSPACE': 'default_test_tbls',

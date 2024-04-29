@@ -2,6 +2,7 @@ from django.contrib import messages
 import requests
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.contrib.auth import logout as django_logout
 
 from pixelpulsegaming.models import Productos
 
@@ -22,6 +23,8 @@ def iniciarsesion(request):
             if response.status_code == 200:
                 redirect_response = redirect('index')
                 token = response.json().get('token')
+                request.session['usuario_autenticado'] = True
+                request.session['auth_token'] = token
                 redirect_response.set_cookie(
                     'auth_token',
                     token,
@@ -67,41 +70,50 @@ def crear_cuenta(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    is_authenticated = request.session.get('usuario_autenticado', False)
+    return render(request, 'index.html', {'is_authenticated': is_authenticated})
+
 
 
 def categoria(request):
-    return render(request, 'categoria.html')
+    is_authenticated = request.session.get('usuario_autenticado', False)
+    return render(request, 'categoria.html', {'is_authenticated': is_authenticated})
 
 
 def monitores(request):
     productos = Productos.objects.filter(categoria__nombreCategoria="Monitores")
-    return render(request, 'CATEGORIAS_HTML/monitores.html', {'productos': productos})
+    is_authenticated = request.session.get('usuario_autenticado', False)
+    return render(request, 'CATEGORIAS_HTML/monitores.html', {'productos': productos}, {'is_authenticated': is_authenticated})
 
 
 def notebooks(request):
     productos = Productos.objects.filter(categoria__nombreCategoria="Notebooks")
-    return render(request, 'CATEGORIAS_HTML/notebooks.html', {'productos': productos})
+    is_authenticated = request.session.get('usuario_autenticado', False)
+    return render(request, 'CATEGORIAS_HTML/notebooks.html', {'productos': productos}, {'is_authenticated': is_authenticated})
 
 
 def perifericos(request):
     productos = Productos.objects.filter(categoria__nombreCategoria="Periféricos")
-    return render(request, 'CATEGORIAS_HTML/perifericos.html', {'productos': productos})
+    is_authenticated = request.session.get('usuario_autenticado', False)
+    return render(request, 'CATEGORIAS_HTML/perifericos.html', {'productos': productos}, {'is_authenticated': is_authenticated})
 
 
 def procesadores(request):
     productos = Productos.objects.filter(categoria__nombreCategoria="Procesadores")
-    return render(request, 'CATEGORIAS_HTML/procesadores.html', {'productos': productos})
+    is_authenticated = request.session.get('usuario_autenticado', False)
+    return render(request, 'CATEGORIAS_HTML/procesadores.html', {'productos': productos}, {'is_authenticated': is_authenticated})
 
 
 def sillasGamer(request):
     productos = Productos.objects.filter(categoria__nombreCategoria="Sillas Gamer")
-    return render(request, 'CATEGORIAS_HTML/sillasGamer.html', {'productos': productos})
+    is_authenticated = request.session.get('usuario_autenticado', False)
+    return render(request, 'CATEGORIAS_HTML/sillasGamer.html', {'productos': productos}, {'is_authenticated': is_authenticated})
 
 
 def tarjetasDeVideo(request):
     productos = Productos.objects.filter(categoria__nombreCategoria="Tarjetas de Video")
-    return render(request, 'CATEGORIAS_HTML/tarjetasDeVideo.html', {'productos': productos})
+    is_authenticated = request.session.get('usuario_autenticado', False)
+    return render(request, 'CATEGORIAS_HTML/tarjetasDeVideo.html', {'productos': productos}, {'is_authenticated': is_authenticated})
 
 
 def perfil(request):
@@ -150,3 +162,12 @@ def mostrar_carrito(request):
         items.append({'producto': producto, 'cantidad': cantidad, 'subtotal': subtotal})
         total += subtotal
     return render(request, 'carrito.html', {'items': items, 'total': total})
+
+def carrito(request):
+    is_authenticated = request.session.get('usuario_autenticado', False)
+    return render(request, 'carrito.html', {'is_authenticated': is_authenticated})
+
+def logout(request):
+    django_logout(request)  
+    print("El usuario se ha desconectado.")  # Mensaje para la consola
+    return redirect('index')  

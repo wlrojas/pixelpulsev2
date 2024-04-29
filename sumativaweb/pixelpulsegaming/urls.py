@@ -9,4 +9,6 @@ urlpatterns = [
     path('procesadores', views.procesadores, name='procesadores'),
     path('sillasgamer', views.sillasGamer, name='sillasgamer'),
     path('tarjetasvideo', views.tarjetasDeVideo, name='tarjetasvideo'),
+    path('carrito', views.carrito, name='carrito'),
+    path('logout', views.logout, name='logout'),
 ]

@@ -51,9 +51,16 @@
                   <a class="nav-link letra-blanca" href="{% url 'categorias' %}">CATEGORIAS</a>
               </div>
               <div class="navbar-nav ms-auto">
-                  <a class="nav-link letra-blanca disabled" href="#">PERFIL</a>
+				{% if is_authenticated %}
+					<a class="nav-link letra-blanca disabled" href="#">PERFIL</a>
+					<a class="nav-link letra-blanca" href="{% url 'logout' %}">CERRAR SESI&Oacute;N</a>
+					<a class="nav-link letra-blanca" href="{% url 'carrito' %}">
+						<i class="fas fa-shopping-cart"></i>
+					</a>
+				{% else %}
                   <a class="nav-link letra-blanca" href="{% url 'login' %}">INICIAR SESI&Oacute;N</a>
                   <a class="nav-link letra-blanca" href="{% url 'registrar' %}">CREAR CUENTA</a>
+				{% endif %}
               </div>
           </div>
       </div>
