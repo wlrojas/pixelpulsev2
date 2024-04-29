@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categor&iacute;as</title>
+    
+    <!--CSS-->
+    <link rel="stylesheet" href="{% static 'CSS/styleProductos.css' %}">
+    
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!--GoogleFont-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!--Letra Marca-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Workbench:SCAN@-41&display=swap" rel="stylesheet">
+
+    <!--Letra Nav-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Workbench:SCAN@-41&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!--Iconos-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-8dN9Xqg3a0l+5g/gJ/u19GUvN5b06qGlvX7MyFim5nEnqLJqk5v1JAz+HH9K2xM8" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <!--Navegador-->
+  <nav class="navbar navbar-expand-lg navegador">
+    <div class="container-fluid">
+        <!-- Nombre de la empresa -->
+        <a class="navbar-brand letra-marca" href="#">
+            <img src="{% static 'IMG/logo.jpg' %}" class="rounded-circle" alt="Logo" width="50" height="50"
+                class="d-inline-block align-text-top">
+            PixelPulse Gaming
+        </a>
+        <!-- Botón para dispositivos móviles -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenido del menú -->
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav me-auto">
+                <a class="nav-link active letra-blanca " aria-current="page" href="{% url 'index' %}">INICIO</a>
+                <a class="nav-link letra-blanca" href="{% url 'categorias' %}">CATEGORIAS</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link letra-blanca disabled" href="#">PERFIL</a>
+                <a class="nav-link letra-blanca" href="{% url 'login' %}">INICIAR SESI&Oacute;N</a>
+                <a class="nav-link letra-blanca" href="{% url 'registrar' %}">CREAR CUENTA</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+  <header class="container contenedor-titulo text-center">
+    <h1 class="titulo kalam-regular">Perif&eacute;ricos</h1>
+  </header>
+
+  <section>
+    <div class="container"> 
+        <div class="row">
+            <!--ProductoUno-->
+            <div class="col-lg-4 col-md-12 col-sm-12 fila"> 
+                <img src="{% static 'IMG/perifericoUno.png' %}" alt="Notebook Gamer" class="imagenes img-fluid">
+            </div>
+            <div class="col-md-8 fila"> 
+                <div class="text-center">
+                    <h3 class="titulo-producto">
+                      EVGA X17 Gaming Mouse, 8k, Wired, Grey, Customizable, 16,000 DPI, 5 Profiles, 10 Buttons, Ergonomic 903-W1-17GR-KR
+                    </h3>
+                </div>
+                <p>
+
+                  El EVGA X17 Gaming Mouse es un ratón diseñado específicamente para satisfacer las demandas de los jugadores más exigentes. 
+                  Con su diseño elegante y ergonómico en color gris, este ratón ofrece una experiencia de juego cómoda y personalizable. 
+                  Equipado con una resolución de hasta 16,000 DPI, el X17 proporciona un seguimiento preciso y ágil, 
+                  lo que permite movimientos suaves y rápidos durante el juego. Además, 
+                  cuenta con 10 botones programables que se pueden personalizar para adaptarse a las preferencias individuales de cada jugador. Con la capacidad de almacenar hasta 5 
+                  perfiles de usuario diferentes, este ratón ofrece versatilidad y conveniencia para cambiar entre configuraciones según sea necesario. En resumen, 
+                  el EVGA X17 Gaming Mouse es una opción excelente para aquellos que buscan un ratón de juego de alta calidad con características personalizables y un rendimiento excepcional.
+
+                </p>
+                <div class="d-flex justify-content-end align-items-end">
+                    <button class="btn btn-outline-light boton botonRojo" type="reset" id="btnBorrar">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="btn btn-outline-light boton botonVerde" type="submit" id="btnAgregar">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                </div>
+
+                <div>
+                    <h4 class="precio">
+                        Precio: $ 45.990
+                    </h4>
+                </div>
+
+            </div>
+        </div>
+        
+        <!--ProductoDos-->
+        <div class="row mt-4">
+            <div class="col-lg-4 col-md-12 col-sm-12 fila"> 
+                <img src="{% static 'IMG/perifericoDos.png' %}" alt="Notebook Gamer" class="imagenes img-fluid">
+            </div>
+            <div class="col-md-8 fila"> 
+                <div class="text-center">
+                    <h3 class="titulo-producto">
+                        Mouse Gamer EVGA X12, Cableado, Ambidiestro, Dual Sensor, 16000 DPI, Color Blanco
+                    </h3>
+                </div>
+                <p>
+
+                  El Mouse Gamer EVGA X12 es una opción ideal para los entusiastas de los juegos que buscan un rendimiento excepcional y una experiencia cómoda. 
+                  Con su diseño ambidiestro y su elegante color blanco, este ratón es adecuado tanto para usuarios diestros como zurdos. 
+                  Equipado con un sensor dual de alta precisión, ofrece una resolución impresionante de hasta 16000 DPI, 
+                  lo que garantiza un seguimiento suave y preciso en una variedad de situaciones de juego. Además, 
+                  el X12 cuenta con un diseño ergonómico que proporciona comodidad durante sesiones de juego prolongadas. Su cableado garantiza una conexión estable y sin retrasos, 
+                  lo que es esencial para un rendimiento óptimo en juegos competitivos. En resumen, el Mouse Gamer EVGA X12 combina un diseño versátil, 
+                  un rendimiento excepcional y características de alta gama para ofrecer una experiencia de juego inigualable.
+                </p>
+                
+                <div class="d-flex justify-content-end align-items-end">
+                    <button class="btn btn-outline-light boton botonRojo" type="reset" id="btnBorrar">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="btn btn-outline-light boton botonVerde" type="submit" id="btnAgregar">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                </div>
+
+                <div class="container">
+                    <h4 class="precio">
+                       Precio: $ 52.240
+                    </h4>
+                </div>
+            </div>
+        </div>
+</section>
+  
+<!--Pie de pagina-->
+<footer class="container-fluid">
+    <p>Derechos Reservados &copy; 2024 PixelPulse Gaming</p>
+</footer>
+  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>  
+</body>
+</html>

@@ -1,0 +1,127 @@
+body {
+    background-image: linear-gradient(#000000  0%, #132213fb  100%) !important;
+}
+
+.navegador  {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    background-image: linear-gradient(#73ff0049  0%, #0000006c 100%);
+    box-shadow: inset 0 0 50px #00000096;
+}
+
+.letra-marca {
+    color: white !important;
+    font-family: "Workbench", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "BLED" 39,
+      "SCAN" -41;
+  }
+
+.kalam-regular {
+    font-family: "Kalam", cursive;
+    font-weight: 400;
+    font-style: normal;
+    }
+  
+.letra-blanca {
+      color: #fff !important;
+      font-family: "Pixelify Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+.navbar-toggler{
+        background-color: #fff !important;
+    
+    }
+    
+.navbar-toggler {
+        border: 1px solid #fff !important;
+    }
+    
+.letra-blanca:hover {
+        color: #73ff00 !important;
+        transition: all 0.6s;
+    }  
+
+.titulo {
+    color: #73ff00 !important;
+    font-size: 30px;
+}
+
+
+.InicioSesionForm{
+    padding: 20px;
+    background-color: #000000a8 !important;
+    border-radius: 20px;
+    color: #ffffff;
+    box-shadow: inset 0 0 50px #73ff007a;    
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: #ffffff !important; 
+    box-shadow: inset 0 0 200px #000000;
+    border-radius: 10px;
+    border: solid 1px #73ff0027;
+}
+
+.input-style {
+    color: #ffffff !important;
+    box-shadow: inset 0 0 200px #000000;
+    border-radius: 10px;
+    border: solid 1px #73ff004b;
+    font-size: 17px;
+    padding: 5px;
+    font-family: "Kalam", cursive;
+    font-weight:lighter;
+    box-sizing: border-box;
+}
+
+.input {
+    width: 100%;
+}
+
+footer {
+    background-color: #141414;
+    color: #fff;
+    padding: 40px;
+    background-image: linear-gradient(#132213fb   0%,rgb(0, 0, 0) 100%);
+}
+
+footer p {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.boton {
+    width: 80%;
+}
+
+.boton:hover {
+    transform: scale(1.15);
+    transition: all 0.2s ease;
+    color: #ffffff !important;
+    box-shadow: inset 0 0 20px #ff5e00;
+}
+
+.botonVerde:hover {
+    background-color: #00ff0063 !important;
+}
+
+.acceso {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+.acceso:hover {
+    color: #6cc57b !important;
+    transition: all 0.3s;
+}

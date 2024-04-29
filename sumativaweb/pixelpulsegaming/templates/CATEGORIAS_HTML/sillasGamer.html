@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categor&iacute;as</title>
+    
+    <!--CSS-->
+    <link rel="stylesheet" href="{% static 'CSS/styleProductos.css' %}">
+    
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!--GoogleFont-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!--Letra Marca-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Workbench:SCAN@-41&display=swap" rel="stylesheet">
+
+    <!--Letra Nav-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Workbench:SCAN@-41&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!--Iconos-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-8dN9Xqg3a0l+5g/gJ/u19GUvN5b06qGlvX7MyFim5nEnqLJqk5v1JAz+HH9K2xM8" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <!--Navegador-->
+  <nav class="navbar navbar-expand-lg navegador">
+    <div class="container-fluid">
+        <!-- Nombre de la empresa -->
+        <a class="navbar-brand letra-marca" href="#">
+            <img src="{% static 'IMG/logo.jpg' %}" class="rounded-circle" alt="Logo" width="50" height="50"
+                class="d-inline-block align-text-top">
+            PixelPulse Gaming
+        </a>
+        <!-- Botón para dispositivos móviles -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenido del menú -->
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav me-auto">
+                <a class="nav-link active letra-blanca " aria-current="page" href="{% url 'index' %}">INICIO</a>
+                <a class="nav-link letra-blanca" href="{% url 'categorias' %}">CATEGORIAS</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link letra-blanca disabled" href="#">PERFIL</a>
+                <a class="nav-link letra-blanca" href="{% url 'login' %}">INICIAR SESI&Oacute;N</a>
+                <a class="nav-link letra-blanca" href="{% url 'registrar' %}">CREAR CUENTA</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+  <header class="container contenedor-titulo text-center">
+    <h1 class="titulo kalam-regular">Monitores</h1>
+  </header>
+
+  <section>
+    <div class="container"> 
+        <div class="row">
+            <!--ProductoUno-->
+            <div class="col-lg-4 col-md-12 col-sm-12 fila"> 
+                <img src="{% static 'IMG/sillaGamerUno.png' %}" alt="Notebook Gamer" class="imagenes img-fluid">
+            </div>
+            <div class="col-md-8 fila"> 
+                <div class="text-center">
+                    <h3 class="titulo-producto">
+                      Silla Gamer Cougar Armor One EVA (PVC, Ajustable, 120kg, Negra-Rosado)
+                    </h3>
+                </div>
+                <p>
+                    La Silla Gamer Cougar Armor One EVA es una opción excelente para los jugadores que buscan comodidad y estilo mientras pasan largas horas frente a la pantalla.
+                    Fabricada con materiales de alta calidad, presenta una cubierta de PVC resistente y duradera en un atractivo diseño negro con detalles rosados.
+                     Esta silla está diseñada ergonómicamente para brindar un excelente soporte lumbar y mantener una postura cómoda durante sesiones de juego prolongadas.
+                    Con capacidad para soportar hasta 120 kg, la Silla Gamer Cougar Armor One EVA es robusta y resistente, adecuada para una amplia gama de usuarios.
+                     Además, ofrece varias opciones de ajuste, incluyendo altura del asiento, ángulo de inclinación y reposabrazos ajustables,
+                      lo que permite personalizarla según las preferencias individuales y las necesidades de comodidad.
+                    En resumen, la Silla Gamer Cougar Armor One EVA combina estilo, confort y funcionalidad para proporcionar una experiencia de juego excepcional. 
+                    Ideal para jugadores exigentes que valoran tanto el rendimiento como la estética.
+                </p>
+                <div class="d-flex justify-content-end align-items-end">
+                    <button class="btn btn-outline-light boton botonRojo" type="reset" id="btnBorrar">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="btn btn-outline-light boton botonVerde" type="submit" id="btnAgregar">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                </div>
+
+                <div>
+                    <h4 class="precio">
+                        Precio: $ 314.895
+                    </h4>
+                </div>
+
+            </div>
+        </div>
+        
+        <!--ProductoDos-->
+        <div class="row mt-4">
+            <div class="col-lg-4 col-md-12 col-sm-12 fila"> 
+                <img src="{% static 'IMG/sillaGamerDos.jpg' %}" alt="Notebook Gamer" class="imagenes img-fluid">
+            </div>
+            <div class="col-md-8 fila"> 
+                <div class="text-center">
+                    <h3 class="titulo-producto">
+                       Silla Gamer Trust GXT 716 Rizza RGB
+                    </h3>
+                </div>
+                <p>
+
+                  La silla Trust GXT 716 Rizza RGB es una opción destacada para los entusiastas del gaming que buscan un equilibrio entre comodidad y estilo en su espacio de juego. 
+                  Con un diseño ergonómico y contemporáneo, esta silla ofrece un respaldo alto y acolchado, junto con apoyabrazos ajustables, 
+                  para garantizar una postura cómoda durante largas sesiones de juego. Además, cuenta con cojines lumbar y cervical que proporcionan un soporte adicional para la espalda y el cuello,
+                   reduciendo la fatiga y mejorando la concentración en el juego.
+                  Equipada con iluminación RGB personalizable, la Trust GXT 716 Rizza añade un toque de estilo y ambiente a tu configuración de juego. 
+                  Su estructura robusta puede soportar hasta 120 kg, mientras que las ruedas suaves permiten una movilidad fluida en diferentes superficies. 
+                  Ya sea que estés inmerso en una intensa partida o trabajando en tu escritorio, esta silla ofrece el confort y la funcionalidad que necesitas para maximizar tu experiencia de juego.
+
+                </p>
+                
+                <div class="d-flex justify-content-end align-items-end">
+                    <button class="btn btn-outline-light boton botonRojo" type="reset" id="btnBorrar">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="btn btn-outline-light boton botonVerde" type="submit" id="btnAgregar">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                </div>
+
+                <div class="container">
+                    <h4 class="precio">
+                       Precio: $ 100.403
+                    </h4>
+                </div>
+            </div>
+        </div>
+</section>
+  
+<!--Pie de pagina-->
+<footer class="container-fluid">
+    <p>Derechos Reservados &copy; 2024 PixelPulse Gaming</p>
+</footer>
+  
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>  
+</body>
+</html>
