@@ -51,3 +51,8 @@ curl --location 'localhost:8000/api/categorias' \
 curl --location 'localhost:8000/api/productos' \
 --header 'Authorization: token {ingresar token}'
 ```
+
+## Apis consumidas
+
+- Api de conversión de moneda en tiempo real para el carrito
+- Api de clima que muestra la temperatura actual de Santiago en el inicio
