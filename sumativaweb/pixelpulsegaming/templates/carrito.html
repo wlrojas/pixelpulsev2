@@ -3,36 +3,72 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1>Carrito de Compras</h1>
-    <table>
-        <thead>
+    <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Carrito{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'CSS/styleCarrito.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+    <header class="container text-center">
+        <h1 class="titulo kalam-regular">Productos Seleccionados - Precios en {{ moneda_actual }}</h1>
+    </header>
+<div class="container contenedor">
+    <table class="table table-dark">
+        <thead class="thead-dark">
             <tr>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-                <th>Opciones</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio CLP</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Subtotal {{ moneda_actual }}</th>
+                <th scope="col">Opciones</th>
             </tr>
         </thead>
         <tbody>
             {% for item in items %}
             <tr>
-                <td>{{ item.producto.nombreProducto }}</td>
-                <td>{{ item.producto.precio }}</td>
-                <td>{{ item.cantidad }}</td>
-                <td>{{ item.subtotal }}</td>
+                <td class="kalam-regular">{{ item.producto.nombreProducto }}</td>
+                <td class="kalam-regular">{{ item.producto.precio }}</td>
+                <td class="kalam-regular">{{ item.cantidad }}</td>
+                <td class="kalam-regular">{% if moneda_actual == "CLP" %}
+                {{ item.subtotal|floatformat:"0" }} {{ moneda_actual }}
+            {% else %}
+                {{ item.subtotal|floatformat:"2" }} {{ moneda_actual }}
+            {% endif %}</td>
                 <td>
-                    <a href="{% url 'eliminar_del_carrito' producto_id=item.producto.idProducto %}">Eliminar</a>
+                    <a class="btn btn-outline-light boton botonRojo" id="btnBorrar" href="{% url 'eliminar_del_carrito' producto_id=item.producto.idProducto %}">
+                        <i class="fas fa-trash-alt fa-lg icono_basura"></i>
+                    </a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <p>Total: {{ total }}</p>
-    <a href="{% url 'vaciar_carrito' %}">Vaciar Carrito</a>
-    <div class="mt-4">
-        <a href="{% url 'categorias' %}" class="btn btn-primary">Ver Categorías</a>
+    <p class="titulo kalam-regular">
+        {% if moneda_actual == "CLP" %}
+        Total: {{ total|floatformat:0 }} {{ moneda_actual }}
+        {% else %}
+        Total: {{ total|floatformat:2 }} {{ moneda_actual }}
+        {% endif %}
+    </p>
+    <div class="container text-center">
+        <a href="{% url 'vaciar_carrito' %}" class="btn btn-primary compra" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+            Vaciar Carrito
+        </a>
     </div>
+    <div class="container text-center">
+            <a href="{% url 'categorias' %}" class="btn btn-primary compra"> Categorías
+            </a>
+    </div>
+<form method="get" action="{% url 'cambiar_moneda' %}">
+        <label class="titulo kalam-regular">Elige tu moneda
+            <select class="form-control" name="moneda" onchange="this.form.submit()">
+                <option value="CLP" {% if request.GET.moneda == "CLP" %}selected{% endif %}>Monedas</option>
+                <option value="CLP" {% if request.GET.moneda == "CLP" %}selected{% endif %}>CLP</option>
+                <option value="USD" {% if request.GET.moneda == "USD" %}selected{% endif %}>USD</option>
+                <option value="EUR" {% if request.GET.moneda == "EUR" %}selected{% endif %}>EUR</option>
+                <option value="JPY" {% if request.GET.moneda == "JPY" %}selected{% endif %}>JPY</option>
+            </select>
+        </label>
+    </form>
 </div>
 {% endblock %}
