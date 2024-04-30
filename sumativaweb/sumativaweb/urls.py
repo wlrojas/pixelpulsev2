@@ -32,6 +32,6 @@ urlpatterns = [
     path('carrito/actualizar/<int:producto_id>/<int:cantidad>', views.actualizar_carrito, name='actualizar_carrito'),
     path('carrito/eliminar/<int:producto_id>', views.eliminar_del_carrito, name='eliminar_del_carrito'),
     path('carrito/cambiar_moneda', views.cambiar_moneda, name='cambiar_moneda'),
-    path('api/productos', apiViews.ProductoList.as_view(), name='api_productos'),
-    path('api/categorias', apiViews.CategoriaList.as_view(), name='api_categorias'),
+    path('api/productos', apiViews.list_productos, name='api_productos'),
+    path('api/categorias', apiViews.list_categorias, name='api_categorias'),
 ]
