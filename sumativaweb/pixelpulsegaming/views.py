@@ -2,11 +2,8 @@ from django.contrib import messages
 import requests
 from django.shortcuts import render
 from django.shortcuts import redirect
-
+from .utils import obtener_tasa_de_cambio, obtener_clima
 from pixelpulsegaming.models import Productos
-
-
-# Create your views here.
 
 
 def iniciarsesion(request):
@@ -67,7 +64,8 @@ def crear_cuenta(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    clima = obtener_clima
+    return render(request, 'index.html', {'clima': clima})
 
 
 def categoria(request):
@@ -144,9 +142,17 @@ def mostrar_carrito(request):
     carrito = request.session.get('carrito', {})
     items = []
     total = 0
+    moneda_actual = request.session.get('moneda_actual', 'CLP')
+    tasa = obtener_tasa_de_cambio('CLP', moneda_actual)
     for producto_id, cantidad in carrito.items():
         producto = Productos.objects.get(idProducto=producto_id)
-        subtotal = producto.precio * cantidad
+        subtotal = (producto.precio * cantidad) * tasa
         items.append({'producto': producto, 'cantidad': cantidad, 'subtotal': subtotal})
         total += subtotal
-    return render(request, 'carrito.html', {'items': items, 'total': total})
+    return render(request, 'carrito.html', {'items': items, 'total': total, 'moneda_actual': moneda_actual})
+
+
+def cambiar_moneda(request):
+    moneda = request.GET.get('moneda', 'CLP')
+    request.session['moneda_actual'] = moneda
+    return redirect(request.META.get('HTTP_REFERER', 'vista_carrito'))

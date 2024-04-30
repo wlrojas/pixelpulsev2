@@ -1,0 +1,124 @@
+.main-container {
+    background-image: linear-gradient(#000000 0%, #132213fb 100%) !important;
+    width: 100%;
+    height: 100vh;
+}
+
+.navegador  {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: inset 0 0 50px #00000096;
+}
+
+.kalam-regular {
+    font-family: "Kalam", cursive;
+    font-weight: 400;
+    font-style: normal;
+    }
+
+.letra-marca {
+  color: white !important;
+  font-family: "Workbench", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "BLED" 39,
+    "SCAN" -41;
+}
+
+.letra-blanca {
+    color: #fff !important;
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.navbar-toggler{
+    background-color: #fff !important;
+
+}
+
+.navbar-toggler {
+    border: 1px solid #fff !important;
+}
+
+.letra-blanca:hover {
+    color: #73ff00 !important;
+    transition: all 0.6s;
+}
+
+.titulo {
+    color: #73ff00 !important;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.contenedor {
+    background-color: #000000;
+    padding: auto;
+    border-radius: 10px;
+    background-size: cover;
+    box-shadow: inset 0 0 5px #73ff00;
+}	
+
+.fila {
+    max-height: 200px;
+}	
+
+.fila img {
+    max-height: 150px;
+    object-fit: cover;
+    justify-content: center;
+}
+
+.nombre {
+    color: #73ff00 !important;
+    font-size: 18px;
+    font-weight: bold;
+}	
+
+.informacion {
+    color: #fff !important;
+    font-size: 15px;
+}
+
+.boton {
+    width: 100%; 
+    height: 100%;
+    border: none !important;
+}
+
+.botonRojo:hover {
+    background-color: #ff00006b !important;
+    border: none !important;
+}
+
+footer {
+    background-color: #141414;
+    color: #fff;
+    padding: 40px;
+    background-image: linear-gradient(#0b0e0b 0%, #00ff0023 100%);
+}
+
+footer p {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.compra {
+    background-color: #73ff004f !important;
+    font-size: 35px;
+    font-weight: bold;
+    margin: 10px;
+    border: none !important;
+}
+
+.compra:hover {
+    background-color: #73ff00 !important;
+}
